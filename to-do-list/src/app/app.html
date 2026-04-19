@@ -1,0 +1,16 @@
+<div class="app-layout">
+  <app-navbar (addTaskClicked)="openAddModal()"></app-navbar>
+  
+  <div class="content-wrapper">
+    <app-kanban-board (editTask)="openEditModal($event)"></app-kanban-board>
+  </div>
+  
+  <app-footer></app-footer>
+
+  <app-task-modal
+    [isOpen]="isModalOpen()"
+    [taskToEdit]="editingTask()"
+    (closeModal)="closeModal()"
+    (saveTask)="handleSaveTask($event)">
+  </app-task-modal>
+</div>

@@ -1,0 +1,33 @@
+<main class="board-container">
+  <div class="board-grid">
+    <app-column 
+      title="To Do" 
+      status="todo" 
+      [tasks]="todoTasks()" 
+      iconType="todo"
+      (deleteTask)="onDeleteTask($event)"
+      (editTask)="onEditTask($event)"
+      (moveTask)="onMoveTask($event)">
+    </app-column>
+    
+    <app-column 
+      title="In Progress" 
+      status="inprogress" 
+      [tasks]="inprogressTasks()" 
+      iconType="inprogress"
+      (deleteTask)="onDeleteTask($event)"
+      (editTask)="onEditTask($event)"
+      (moveTask)="onMoveTask($event)">
+    </app-column>
+    
+    <app-column 
+      title="Completed" 
+      status="completed" 
+      [tasks]="completedTasks()" 
+      iconType="completed"
+      (deleteTask)="onDeleteTask($event)"
+      (editTask)="onEditTask($event)"
+      (moveTask)="onMoveTask($event)">
+    </app-column>
+  </div>
+</main>

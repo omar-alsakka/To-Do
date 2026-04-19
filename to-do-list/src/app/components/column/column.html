@@ -1,0 +1,34 @@
+<div class="column">
+  <div class="column-header">
+    <div class="header-left">
+      <div class="icon-wrapper" [ngClass]="iconType()">
+        <svg *ngIf="iconType() === 'todo'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+        <svg *ngIf="iconType() === 'inprogress'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+        <svg *ngIf="iconType() === 'completed'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="title-group">
+        <h2 class="column-title">{{ title() }}</h2>
+        <span class="task-count">{{ tasks().length }} tasks</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="task-list">
+    @for (task of tasks(); track task.id) {
+      <app-task-card 
+        [task]="task"
+        (deleteClicked)="onDelete($event)"
+        (editClicked)="onEdit($event)"
+        (statusChanged)="onMove($event)">
+      </app-task-card>
+    } @empty {
+      <div class="empty-state">
+        <div class="empty-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17.5a2.5 2.5 0 0 1 2.5-2.5h15a2.5 2.5 0 0 1 2.5 2.5V20H2v-2.5z"/><path d="M3 15V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v9"/><path d="M12 9v4"/><path d="M10 11h4"/></svg>
+        </div>
+        <p class="empty-title">No tasks yet</p>
+        <p class="empty-text">Click + to add one</p>
+      </div>
+    }
+  </div>
+</div>
